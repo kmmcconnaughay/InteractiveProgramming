@@ -15,8 +15,11 @@ The image below shows what the terminal says while the music is playing on the c
 ![terminal]
 (terminal.jpg)
 
-Look at video on GitHub for example of the program running.
-The video gives step-by-step directions on how to use the program and also shows what happens when there are no images saved from the webcam. If the user does not capture any snapshots from the webcam, then the music will not play, stop, or shuffle because of the conditions we included. Files with the names we specified must exist (the statement is true) in order for the user to listen to any music.
+Look at these videos by clicking on the links below.
+[Functional Example](https://goo.gl/photos/sJZFpJsXKpvtFuUNA)
+[Disfunctional Example](https://goo.gl/photos/BtXQyyNE8zBDnFfC9)
+
+The first video gives step-by-step directions on how to use the program and also shows what happens when there are no images saved from the webcam. If the user does not capture any snapshots from the webcam, then the music will not play, stop, or shuffle because of the conditions we included. This is shown in the second video. Files with the names we specified must exist (the statement is true) in order for the user to listen to any music.
 
 **Implementation**
 
