@@ -1,8 +1,9 @@
 import numpy
-import pylab
 import pygame
 import pygame.camera
 from pygame.locals import *
+import os, sys
+import time
 
 class Capture(object):
 
@@ -18,7 +19,6 @@ class Capture(object):
         self.screen = pygame.surface.Surface(self.size, 0, self.display)
         self.ccolor = (248, 111, 115)
         self.threshold = (60, 10, 10)
-        # self.sub = pygame.subsurface(0, 0, 50, 50)
 
 
     def get_snapshot(self):
@@ -26,17 +26,6 @@ class Capture(object):
         self.display.blit(self.screen, (0, 0))
         pygame.display.flip()
 
-    """def calibrate(self):
-        background = []
-        for i in range(0, 5):
-            background.append(self.camera.get_image(self.background))
-        pygame.transform.average_surfaces(background, self.background)
-        # blit to display surface
-        self.display.blit(self.background, (0, 0))
-        pygame.display.flip()"""
-    """def array(self):
-        array = pygame.surfarray.array2d(self.display.fill(self.ccolor, (0, 0, 50, 50)))
-        print(array)"""
 
     def array(self):
         filenames = ['image_fastforward.jpg', 'image_play.jpg', 'image_restart.jpg',
@@ -45,32 +34,10 @@ class Capture(object):
         for filename in filenames:
             image = pygame.image.load(filename)
             array = pygame.surfarray.pixels_red(image)
-            #luminosity filter
-            #avgs = [[(r*0.298 + g*0.587 + b*0.114) for (r,g,b) in col] for col in arr]
-            #arr = numpy.array([[[avg,avg,avg] for avg in col] for col in avgs])
             print(array, str(count))
             count += 1
-        return
+        return array
 
-    """def average(self):
-        filenames = ['image_fastforward.jpg', 'image_play.jpg', 'image_restart.jpg',
-                     'image_stop.jpg']
-        count = 1
-        for filename in filenames:
-            image = pygame.image.load(filename)
-            # make a red rectangle on the screen
-            #crect = pygame.draw.rect(self.display, (255, 0, 0), (145,105,30,30), 4)
-            # get average color of area inside the rectangle
-            #self.ccolor = pygame.transform.average_color(self.screen, crect)
-            # fill upper left corner with that color
-            # self.display.fill(self.ccolor, (0, 0, 50, 50))
-            # sub = self.subsurface(crect)
-            #self.display.blit(self.screen, (0,0))
-            pygame.image.save(image,'' + str(count) + '.jpg')
-            count += 1
-            #pygame.transform.threshold(self.screen, self.screen,
-                          # self.ccolor(30, 30, 30), self.threshold, 2)
-            pygame.display.flip()"""
 
     def main(self):
         capture = True
@@ -100,9 +67,74 @@ class Capture(object):
                         picture = 'restart'
                         pygame.image.save(self.screen, "image_" + picture + ".jpg")
 
-
 if __name__ == '__main__':
     camera = Capture()
     main_method = camera.main()
-    # average = camera.average()
     array = camera.array()
+
+class Music_Player():
+
+    def __init__(self):
+        pygame.init()
+        pygame.mixer.init()
+        self.display = pygame.display.set_caption('Music Player')
+        self.blue = (0, 0, 255)
+        self.size = [640,480]
+        self.screen = pygame.display.set_mode(self.size)
+        self.clock = pygame.time.Clock()
+
+    def filesfolder(self):
+        files = []
+        path = '/home/anikapayano/InteractiveProgramming'
+        directory = os.listdir(path)
+        for filename in directory:
+            if filename.endswith(".wav"):
+                files.append(filename)
+        files.sort()
+        return files
+
+    def picksong(self):
+        song = '09.wav'
+        return song
+
+    def sound(self):
+        sound = pygame.mixer.Sound(self.picksong())
+        return sound
+
+    def playsound(self):
+        """Play sound through default mixer channel in blocking manner.
+        This will load the whole sound into memory before playback.
+        """
+        song = self.sound()
+        song.play()
+
+    def stopsound(self):
+        song = self.sound()
+        song.stop()
+
+
+musicplayer = Music_Player()
+sound = musicplayer.sound()
+
+def events(player, sound):
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    sound.play()
+                    display.blit()
+                if event.key == pygame.K_s:
+                    sound.stop()
+        player.screen.fill(player.blue)
+        pygame.display.update()
+
+
+musicplayer = Music_Player()
+files = musicplayer.filesfolder()
+
+print('press p - play sound')
+print('press s - stop playing instantly')
+events(musicplayer,sound)
