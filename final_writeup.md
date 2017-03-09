@@ -12,7 +12,7 @@ We were able to write fully functional code for the webcam that initializes the 
 The image below shows what the terminal says while the music is playing on the computer. There are directions for which keys to press while the music is playing. With a few more functions, we were able to write code that allows the user to shuffle songs without having to stop the music before changing the song. This library is saved on the computer and could be expanded easily.
 
 
-![terminal](/home/kerry/InteractiveProgramming/terminal.jpeg)
+![terminal](https://goo.gl/photos/FdypbHV4MWRSyVuJ9)
 
 Look at these videos by clicking on the links below.  
 [Functional Example](https://goo.gl/photos/sJZFpJsXKpvtFuUNA)  
@@ -27,7 +27,7 @@ A major part of the program is the events that allow the user to capture images 
 
 In the webcam part of the project, there were multiple different ways to process the images the user saves. We could have used thresholds, different surface arrays, found blobs in the images, or even taken the average color of a certain area of the screen and returned that value. Ultimately, we chose the existence of certain files in the directory. Originally, we had planned on using hand gestures, but opencv never worked, so we had to move away from that path. It was hard to pick how to process the images because we knew nothing about processing images in these different ways, so we chose the most straightforward path we thought of: using the existence of the images as a condition.
 
-![MVC](/home/kerry/InteractiveProgramming/MVC.jpeg)
+![MVC](https://goo.gl/photos/o5WT1qtCnywge2CJ8)
 
 **Reflection**
 
