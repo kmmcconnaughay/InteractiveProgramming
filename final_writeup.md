@@ -12,7 +12,7 @@ We were able to write fully functional code for the webcam that initializes the 
 The image below shows what the terminal says while the music is playing on the computer. There are directions for which keys to press while the music is playing. With a few more functions, we were able to write code that allows the user to shuffle songs without having to stop the music before changing the song. This library is saved on the computer and could be expanded easily.
 
 
-![terminal](https://goo.gl/photos/FdypbHV4MWRSyVuJ9)
+![terminal](https://lh3.googleusercontent.com/opOETBaa4KODyD1QVkwpsfVcSD-Ex1BBh3zu4Mf9GWUA9galYfwHWXUBk_ogb8nGGEXdEfn35yb3fsZ9xbhKSRYJAWWmYbyeQOgCySgoFZBvek7wSHLSHoEsM3-lR6NQfY0hTP3EQ6tRhzKDBScWW7YHqX_JkZLd3NS-wl4C4K8W2u8SZyFVbmp0IjgeaYY8JO_IoHnvW0fr3g7UR7DKFOEhqHPKhmw_s9v_WAZMlrxBJsNP_P1QfpyCndySWKuXpYNaklyMKTaXUz9_Lfh6ua0gd_nmblr7wJ1Cl1Bp7UMyCxXBt49C3hklZlP6ZBT9_9wo_5H8Fe3ODD9rNZsgSHIvXkTyH5MQHINmhBj01adIf-k8ByhKnVHkYAkIuTEFFJfYGEkFDSw-mdmPVMM-GH7Mvgn5zVb0AdYqOt_UHDUclwQuBY8ytwGGXh1WjQ_w-48b5NX3G3V8QhG6IHsJKJ-Dm5dPz7pWJPDu7sOKWusqqHB2ZIFfszOIQ2BZaYIjxreO-ecKRJL3fiS0W-e29L2w1YEn-euYqSk7FG6DG-Mjt3B7dl-xuxpMoF2gP_1wTpXiLSWIb_ykKkqWa_Y8Ok8VGkfeJPreeR22n5h4CEfWA8CP=w950-h713-no)
 
 Look at these videos by clicking on the links below.  
 [Functional Example](https://goo.gl/photos/sJZFpJsXKpvtFuUNA)  
@@ -27,7 +27,7 @@ A major part of the program is the events that allow the user to capture images 
 
 In the webcam part of the project, there were multiple different ways to process the images the user saves. We could have used thresholds, different surface arrays, found blobs in the images, or even taken the average color of a certain area of the screen and returned that value. Ultimately, we chose the existence of certain files in the directory. Originally, we had planned on using hand gestures, but opencv never worked, so we had to move away from that path. It was hard to pick how to process the images because we knew nothing about processing images in these different ways, so we chose the most straightforward path we thought of: using the existence of the images as a condition.
 
-![MVC](https://goo.gl/photos/o5WT1qtCnywge2CJ8)
+![MVC](https://lh3.googleusercontent.com/nyW3SUjwYxRkBMAsKrQkBEL2uZB64wrw4OR79bvBWf7YiEihIUTycITtzWAIvywNI5wEbMA_5yPXJZIdVxjy5uapwDjJ_YHtMe03o2CBUKCkB2FQdSLbYYCfV8G1k1loLjy-t2i_U7IIwipYd8nRyHzP7PzvhLUVVqtpvCaHmG9JIcSBI10ZoxZ2QvwsFuWFZBYMbYd5iU4EKJvPf5LufUo_i0WPxglzUQPZMNu9_1fwjCPQQI5BJzmYDX1c-MYQAyTb0irSNZMUqDgkL4vKGHWZgmwmwyZsNxV2sgv1nOaE6oBMAy0s3UkBx31YnfS5Y7cSbR3No2mrn_YlBJANEVnLQpkrS3n8xf8sEXztn_kR7Mp_4X7IEEVlRh38yAeM7QtUHiQIv7F0bL03DFUkoa8_uSRTPkOpGZ4aiW-8CkHd2m8cJP4DsP7XBudcY2yBUFKS-he7XwyFiR2tdm2ztlgdzlfCVauA_xSakGKUV-sDRn3qKj5WtGzx_inDv_1I22p34R0EVGZQ75vE6ge95WPekWp5eqxRhMvn9nAJ7gftcBKx0J0EBXOqjno2qH1E8FKkTlvXrructnuazZZmMKFwDtRp-MtyR45vW8Bh_wo3ohrW9e-q=w950-h713-no)
 
 **Reflection**
 
