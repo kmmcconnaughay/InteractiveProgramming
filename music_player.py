@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 import pygame
 import multiprocessing
 import os
 import sys
 import random
 import threading
-from queue import Queue
 import time
 
 class Music_Player():
@@ -13,32 +11,11 @@ class Music_Player():
     def __init__(self):
         pygame.init()
         pygame.mixer.init()
-
-    def exampleJob(worker):
-        time.sleep(0.5)
-
-    def threader(self):
-        while True:
-            worker = q.get()
-            self.exampleJob(worker)
-            q.task_done()
-
-    def threading(self):
-        lock = threading.Lock() #locks thread if variables are used between threads
-        q = Queue()
-        for x in range(2): #how many threads I want
-            t = threading.Thread(target = threader)
-            t.daemon = True
-            t.start()
-
-        start = time.time()
-        for worker in range(20):
-            q.put(worker)
-
-        q.join
-
-        print('Entire job took:', time.time()-start)
-
+        self.display = pygame.display.set_caption('Music Player')
+        self.blue = (0, 0, 255)
+        self.size = [640,480]
+        self.screen = pygame.display.set_mode(self.size)
+        self.clock = pygame.time.Clock()
 
     def filesfolder(self):
         files = []
@@ -51,88 +28,101 @@ class Music_Player():
         return files
 
     def picksong(self):
-        files = self.filesfolder()
-        songnum = random.randint(0, 14)
-        song = files[songnum]
-        print(song)
+        song = '09.wav'
         return song
+
+        #files = self.filesfolder()
+        #songnum = random.randint(0, 14)
+        #song = files[songnum]
+        #print(song)
+        #return song
+
+    def sound(self):
+        sound = pygame.mixer.Sound(self.picksong())
+        return sound
 
     def playsound(self):
         """Play sound through default mixer channel in blocking manner.
         This will load the whole sound into memory before playback.
         """
-        sound = pygame.mixer.Sound(self.picksong())
-        clock = pygame.time.Clock()
-        sound.play()
-        while pygame.mixer.get_busy():
-            #print ("Playing...")
-            clock.tick(1000)
+        song = self.sound()
+        song.play()
+        #while pygame.mixer.get_busy():
+        #    print ("Playing...")
+        #    clock.tick(1000)
 
     def stopsound(self):
-        self.playsound.stop()
+        song = self.sound()
+        song.stop()
 
-    def playnext(self):
-        i = self.files.index(self.song)
-        pygame.mixer.Sound(self.files[i + 1])
-        clock = pygame.time.Clock()
-        sound.play()
-        while pygame.mixer.get_busy():
-            print ("Playing...")
-            clock.tick(1000)
+    #def playnext(self):
+    #    i = self.files.index(self.song)
+    #    pygame.mixer.Sound(self.files[i + 1])
+    #    clock = pygame.time.Clock()
+    #    sound.play()
+    #    while pygame.mixer.get_busy():
+    #        print ("Playing...")
+    #        clock.tick(1000)
 
-    def playprevious(self):
-        pygame.mixer.Sound(files[self.i - 1])
-        clock = pygame.time.Clock()
-        sound.play()
-        while pygame.mixer.get_busy():
-            print ("Playing...")
-            clock.tick(1000)
+    #def playprevious(self):
+    #    pygame.mixer.Sound(files[self.i - 1])
+    #    clock = pygame.time.Clock()
+    #    sound.play()
+    #    while pygame.mixer.get_busy():
+    #        print ("Playing...")
+    #        clock.tick(1000)
 
-    def events(self):
-        playing = True
-        while playing:
-            events = pygame.event.get()
-            for event in events:
-                if event.type == KEYDOWN:
-                    if event.key == K_s:
-                        self.stopsound()
-                        playing = False
+musicplayer = Music_Player()
+sound = musicplayer.sound()
+
+def events(player, sound):
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_p:
+                    sound.play()
+                    display.blit()
+                if event.key == pygame.K_s:
+                    sound.stop()
+        player.screen.fill(player.blue)
+        pygame.display.update()
 
 
-    def getmixerargs(self):
-        pygame.mixer.init()
-        freq, size, chan = pygame.mixer.get_init()
-        return freq, size, chan
+#    def getmixerargs(self):
+#        pygame.mixer.init()
+#        freq, size, chan = pygame.mixer.get_init()
+#        return freq, size, chan
 
 
-    def initMixer(self):
-        BUFFER = 3072  # audio buffer size, number of samples since pygame 1.8.
-        FREQ, SIZE, CHAN = getmixerargs()
-        pygame.mixer.init(FREQ, SIZE, CHAN, BUFFER)
+#    def initMixer(self):
+#        BUFFER = 3072  # audio buffer size, number of samples since pygame 1.8.
+#        FREQ, SIZE, CHAN = getmixerargs()
+#        pygame.mixer.init(FREQ, SIZE, CHAN, BUFFER)
 
 
 musicplayer = Music_Player()
 files = musicplayer.filesfolder()
 #print(files)
-playWAV = musicplayer.playsound()
+#playWAV = musicplayer.playsound()
 
+print('press p - play sound')
+print('press s - stop playing instantly')
+events(musicplayer,sound)
+
+# if __name__ == '__main__':
+
+
+#    t = threading.Thread(name='daemon', target= musicplayer.events)
+#    d = threading.Thread(name= 'non-daemon', target= musicplayer.playsound)
+#    t.setDaemon(True)
+#    d.start()
+#    t.start()
 
 #if __name__ == "__main__":
 #    p1 = multiprocessing.Process(target= musicplayer.playsound, args())
 
 #playWAV = musicplayer.playsound(input('WAV File:'))
 #playsong = musicplayer.playsound()
-=======
-class Music_Player():
-    def __init__(self):
-        file = "01.mp3"
-        pygame.mixer.init()
-        pygame.mixer.music.load(file)
-        load(object)
-        pygame.mixer.music.play(loops=0, start=0.0) # plays the loaded music stream
-        while pygame.music.get_busy() == True:
-            pygame.time.Clock.tick(framerate=0)
-        pygame.mixer.music.rewind() # rewinds the music to the beginning
-        pygame.mixer.music.pause() # pauses the music if it is playing
-        pygame.mixer.music.unpause() # unpauses the music after it is paused
->>>>>>> 6cea39c21cad7fa940c853c17cda8d531ffadbef
