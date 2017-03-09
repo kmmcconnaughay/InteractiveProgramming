@@ -13,11 +13,11 @@ The image below shows what the terminal says while the music is playing on the c
 
 
 ![terminal]
-(terminal.jpg)
+(terminal.jpeg)
 
-Look at these videos by clicking on the links below.
-[Functional Example](https://goo.gl/photos/sJZFpJsXKpvtFuUNA)
-[Disfunctional Example](https://goo.gl/photos/BtXQyyNE8zBDnFfC9)
+Look at these videos by clicking on the links below.  
+[Functional Example](https://goo.gl/photos/sJZFpJsXKpvtFuUNA)  
+[Disfunctional Example](https://goo.gl/photos/BtXQyyNE8zBDnFfC9)  
 
 The first video gives step-by-step directions on how to use the program and also shows what happens when there are no images saved from the webcam. If the user does not capture any snapshots from the webcam, then the music will not play, stop, or shuffle because of the conditions we included. This is shown in the second video. Files with the names we specified must exist (the statement is true) in order for the user to listen to any music.
 
@@ -29,7 +29,7 @@ A major part of the program is the events that allow the user to capture images 
 In the webcam part of the project, there were multiple different ways to process the images the user saves. We could have used thresholds, different surface arrays, found blobs in the images, or even taken the average color of a certain area of the screen and returned that value. Ultimately, we chose the existence of certain files in the directory. Originally, we had planned on using hand gestures, but opencv never worked, so we had to move away from that path. It was hard to pick how to process the images because we knew nothing about processing images in these different ways, so we chose the most straightforward path we thought of: using the existence of the images as a condition.
 
 ![MVC]
-(MVC.jpg)
+(MVC.jpeg)
 
 **Reflection**
 
