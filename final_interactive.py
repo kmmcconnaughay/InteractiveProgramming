@@ -3,7 +3,7 @@ import pygame
 import pygame.camera
 from pygame.locals import *
 import os, sys
-import time
+import time, random
 
 class Capture(object):
 
@@ -26,19 +26,6 @@ class Capture(object):
         self.display.blit(self.screen, (0, 0))
         pygame.display.flip()
 
-
-    def array(self):
-        filenames = ['image_fastforward.jpg', 'image_play.jpg', 'image_restart.jpg',
-                     'image_stop.jpg']
-        count = 1
-        for filename in filenames:
-            image = pygame.image.load(filename)
-            array = pygame.surfarray.pixels_red(image)
-            print(array, str(count))
-            count += 1
-        return array
-
-
     def main(self):
         capture = True
         while capture:
@@ -58,19 +45,17 @@ class Capture(object):
                     if event.key == K_p:
                         picture = 'play'
                         pygame.image.save(self.screen, "image_" + picture + ".jpg")
-                    # f for fast forward
-                    if event.key == K_f:
-                        picture = 'fastforward'
+                    # c for change
+                    if event.key == K_c:
+                        picture = 'change'
                         pygame.image.save(self.screen, "image_" + picture + ".jpg")
-                    # r for restart
-                    if event.key == K_r:
-                        picture = 'restart'
-                        pygame.image.save(self.screen, "image_" + picture + ".jpg")
+
 
 if __name__ == '__main__':
     camera = Capture()
     main_method = camera.main()
-    array = camera.array()
+    # array = camera.array()
+
 
 class Music_Player():
 
@@ -83,39 +68,26 @@ class Music_Player():
         self.screen = pygame.display.set_mode(self.size)
         self.clock = pygame.time.Clock()
 
-    def filesfolder(self):
-        files = []
-        path = '/home/anikapayano/InteractiveProgramming'
-        directory = os.listdir(path)
-        for filename in directory:
-            if filename.endswith(".wav"):
-                files.append(filename)
-        files.sort()
-        return files
+    def files(self):
+        list_songs = ['01.wav', '02.wav', '03.wav', '04.wav','05.wav','06.wav',
+        '07.wav', '08.wav', '09.wav', '10.wav', '11.wav', '12.wav', '13.wav',
+        '14.wav', '15.wav']
+        return list_songs
 
     def picksong(self):
-        song = '09.wav'
+        files = self.files()
+        song = random.choice(files)
+        print(song)
         return song
 
     def sound(self):
         sound = pygame.mixer.Sound(self.picksong())
         return sound
 
-    def playsound(self):
-        """Play sound through default mixer channel in blocking manner.
-        This will load the whole sound into memory before playback.
-        """
-        song = self.sound()
-        song.play()
-
-    def stopsound(self):
-        song = self.sound()
-        song.stop()
-
 
 musicplayer = Music_Player()
 sound = musicplayer.sound()
-
+files = musicplayer.files()
 def events(player, sound):
     while True:
         for event in pygame.event.get():
@@ -124,17 +96,24 @@ def events(player, sound):
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
-                    sound.play()
-                    display.blit()
+                    if os.path.isfile('image_play.jpg') == True:
+                        sound.play()
                 if event.key == pygame.K_s:
-                    sound.stop()
+                    if os.path.isfile('image_stop.jpg') == True:
+                        sound.stop()
+                if event.key == pygame.K_c:
+                    if os.path.isfile('image_change.jpg') == True:
+                        sound.stop()
+                        sound = musicplayer.sound()
+                        sound.play()
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
         player.screen.fill(player.blue)
         pygame.display.update()
 
-
-musicplayer = Music_Player()
-files = musicplayer.filesfolder()
-
-print('press p - play sound')
-print('press s - stop playing instantly')
-events(musicplayer,sound)
+print('Press P - play sound')
+print('Press S - stop playing instantly')
+print('Press C - change song')
+print('Press ESCAPE - close Music Player')
+events(musicplayer,sound) # , array)
