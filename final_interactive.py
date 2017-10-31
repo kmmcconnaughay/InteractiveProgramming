@@ -69,9 +69,8 @@ class Music_Player():
         self.clock = pygame.time.Clock()
 
     def files(self):
-        list_songs = ['01.wav', '02.wav', '03.wav', '04.wav','05.wav','06.wav',
-        '07.wav', '08.wav', '09.wav', '10.wav', '11.wav', '12.wav', '13.wav',
-        '14.wav', '15.wav']
+        list_songs = ['1.mp3','2.mp3','3.mp3','4.mp3','5.mp3','6.mp3','7.mp3',
+            '8.mp3']
         return list_songs
 
     def picksong(self):

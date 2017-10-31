@@ -19,7 +19,7 @@ class Music_Player():
 
     def filesfolder(self):
         files = []
-        path = '/home/anikapayano/InteractiveProgramming'
+        path = 'C:/Users/apayano/Documents/GitHub/InteractiveProgramming'
         directory = os.listdir(path)
         for filename in directory:
             if filename.endswith(".wav"):
@@ -28,7 +28,7 @@ class Music_Player():
         return files
 
     def picksong(self):
-        song = '09.wav'
+        song = '1.wav'
         return song
 
         #files = self.filesfolder()
@@ -84,9 +84,11 @@ def events(player, sound):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
                     sound.play()
-                    display.blit()
                 if event.key == pygame.K_s:
                     sound.stop()
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
         player.screen.fill(player.blue)
         pygame.display.update()
 
